@@ -1,28 +1,99 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="root">
+    <div class="todo-container">
+      <div class="todo-warp">
+        <Title/>
+        <AddItem :addTodo="addTodo"/>
+        <ItemList :todos="todos" :selectTodo="selectTodo" :deleteTodo="deleteTodo"/>
+        <countItem :todos="todos" :selectAllTodo="selectAllTodo" :deleteAllTodo="deleteAllTodo"/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Title from "@/components/Title";
+import AddItem from "@/components/AddItem";
+import ItemList from "@/components/ItemList";
+import CountItem from "@/components/CountItem";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Title,
+    AddItem,
+    ItemList,
+    CountItem
+  },
+  data() {
+    return {
+      todos:[
+        {id:'001',title:'吃饭',done:false},
+        {id:'002',title:'睡觉',done:false},
+        {id:'003',title:'学习',done:true}
+      ]
+    }
+  },
+  methods: {
+    //给子组件传入一个函数，利用子组件的数据
+    addTodo(todo) {
+      this.todos.unshift(todo)
+    },
+    //是否勾选
+    selectTodo(id) {
+      this.todos.forEach((todo) => {
+        if(todo.id === id) {
+          todo.done = !todo.done
+        }
+      })
+    },
+    //是否删除
+    deleteTodo(id) {
+      this.todos = this.todos.filter(todo => {
+        return todo.id !== id
+      })
+    },
+    //是否全部选择或不选
+    selectAllTodo(flag) {
+      this.todos.forEach((todo) => {
+        todo.done = flag
+      })
+    },
+    //删除所有已经完成的todo
+    deleteAllTodo() {
+      this.todos = this.todos.filter((todo) => {
+        return !todo.done
+      })
+    }
   }
 }
 </script>
 
 <style>
-#app {
+#root {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /*text-align: center;*/
   color: #2c3e50;
-  margin-top: 60px;
 }
+.todo-container {
+  width: 600px;
+  /*height: 600px;*/
+  height: fit-content;
+  margin: 60px auto 0;
+  border-radius: 4px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  padding: 25px;
+ }
+.todo-warp {
+  border: 1px solid #ccc;
+  /*width: 550px;*/
+  /*height: 600px;*/
+  height: fit-content;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
 </style>
+
