@@ -10,7 +10,7 @@
 <script>
 export default {
   name: "CountItem",
-  props: ['todos','selectAllTodo','deleteAllTodo'],
+  props: ['todos'],
   computed: {
     countTotal() {
       return this.todos.length
@@ -25,13 +25,13 @@ export default {
         return this.countTotal === this.countDone && this.countTotal > 0
       },
       set(value) {
-        this.selectAllTodo(value)
+        this.$emit('selectAllTodo',value)
       }
     }
   },
   methods: {
     isDeleteAll() {
-      this.deleteAllTodo()
+      this.$emit('deleteAllTodo')
     }
   }
 

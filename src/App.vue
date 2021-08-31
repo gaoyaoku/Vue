@@ -3,9 +3,10 @@
     <div class="todo-container">
       <div class="todo-warp">
         <Title/>
-        <AddItem :addTodo="addTodo"/>
+<!--        自定义事件调用-->
+        <AddItem @addTodo="addTodo"/>
         <ItemList :todos="todos" :selectTodo="selectTodo" :deleteTodo="deleteTodo"/>
-        <countItem :todos="todos" :selectAllTodo="selectAllTodo" :deleteAllTodo="deleteAllTodo"/>
+        <countItem :todos="todos" @selectAllTodo="selectAllTodo" @deleteAllTodo="deleteAllTodo"/>
       </div>
     </div>
   </div>

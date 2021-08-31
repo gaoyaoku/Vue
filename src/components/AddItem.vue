@@ -11,7 +11,6 @@ import {nanoid} from 'nanoid'
 
 export default {
   name: "AddItem",
-  props: ['addTodo'],
   data() {
     return {
       title: ''
@@ -26,7 +25,8 @@ export default {
         return
       }
       const todoObject = {id:nanoid(), title: this.title.trim(), done: false}
-      this.addTodo(todoObject)
+      // 自定义事件触发
+      this.$emit('addTodo',todoObject)
       this.title = ''
     }
   }
