@@ -1,6 +1,7 @@
 <template>
   <li @click="getTodoIdForSelect">
-    <input type="checkbox"  :checked="todo.done" @change="getTodoIdForSelect"/>
+<!--todo 阻止事件冒泡-->
+    <input type="checkbox"  :checked="todo.done" @change.stop="getTodoIdForSelect"/>
     <span>{{ todo.title }}</span>
     <button @click="getTodoIdForDelete" >删除</button>
   </li>
