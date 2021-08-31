@@ -55,8 +55,10 @@ export default {
         }
       })
     },
-    //是否删除
-    deleteTodo(id) {
+    // 是否删除
+    // 利用消息订阅，传入的第一个参数是消息名，用_作为占位符。
+    deleteTodo(_,id) {
+      console.log("删除")
       this.todos = this.todos.filter(todo => {
         return todo.id !== id
       })
