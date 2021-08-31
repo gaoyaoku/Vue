@@ -27,11 +27,17 @@ export default {
   },
   data() {
     return {
-      todos:[
-        {id:'001',title:'吃饭',done:false},
-        {id:'002',title:'睡觉',done:false},
-        {id:'003',title:'学习',done:true}
-      ]
+      // {id:'001',title:'吃饭',done:false}
+      todos: JSON.parse(localStorage.getItem('todos')) || []
+    }
+  },
+  // 浏览器本地存储, 数据在数组中，添加时通过unshift()方法，会触发watch，且开启deep，当每一个对象中的元素改变时。
+  watch: {
+    todos: {
+      deep:true,
+      handler(value){
+        localStorage.setItem('todos',JSON.stringify(value))
+      }
     }
   },
   methods: {
