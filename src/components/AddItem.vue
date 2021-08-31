@@ -3,7 +3,6 @@
     <input type="text" placeholder="创建新的待办事项..." v-model="title"  @keyup.enter="add"/>
     <button @click="add">创建</button>
   </div>
-
 </template>
 
 <script>

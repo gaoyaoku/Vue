@@ -72,19 +72,30 @@ export default {
       this.todos = this.todos.filter((todo) => {
         return !todo.done
       })
-    }
+    },
+    //是否勾选
+    editTodo(id, value) {
+      this.todos.forEach((todo) => {
+        if(todo.id === id) {
+          todo.title = value
+        }
+      })
+    },
   },
   mounted() {
     // 绑定事件，接受参数，执行回调函数。
     this.$bus.$on('selectTodo', this.selectTodo)
     // 订阅消息，由于每发布一次，id更改，且依赖id
     this.pubsubId = pubsub.subscribe('deleteTodo', this.deleteTodo)
+    // 编辑
+    this.$bus.$on('editTodo', this.editTodo)
   },
   beforeDestroy() {
     // 由于此组件被销毁时，$bus身上的时间还在，所以就帮助销毁一下。
-    this.$bus.off('selectTodo')
+    this.$bus.$off('selectTodo')
     // 传入id
     pubsub.unsubscribe(this.pubsubId)
+    this.$bus.$off('editTodo')
   }
 }
 </script>
