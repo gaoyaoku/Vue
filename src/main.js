@@ -5,4 +5,8 @@ Vue.config.productionTip = false
 
 new Vue({
   render: h => h(App),
+  // 把创建的Vue实例对象，即当前的vm，当作Vue原型的$bus
+  beforeCreate() {
+    Vue.prototype.$bus = this
+  }
 }).$mount('#app')

@@ -10,14 +10,15 @@
 <script>
 export default {
   name: "Item",
-  props: ['todo','selectTodo','deleteTodo'],
+  props: ['todo'],
   methods: {
-    //由于状态改变后无法直接修改传入todo.done 所以利用函数把状态改变的id传回App中的数据
+    // 由于状态改变后无法直接修改传入todo.done 所以利用函数把状态改变的id传回App中的数据
+    // 利用全局事件总线，帮助触发$bus身上的事件，并传递参数
     getTodoIdForSelect() {
-      this.selectTodo(this.todo.id)
+      this.$bus.$emit('selectTodo', this.todo.id)
     },
     getTodoIdForDelete() {
-      this.deleteTodo(this.todo.id)
+      this.$bus.$emit('deleteTodo', this.todo.id)
     }
   }
 }

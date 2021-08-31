@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <Item v-for="todo in todos" :key="todo.id" :todo="todo" :selectTodo="selectTodo" :deleteTodo="deleteTodo"/>
+    <Item v-for="todo in todos" :key="todo.id" :todo="todo"/>
 
   </ul>
 </template>
@@ -13,7 +13,7 @@ export default {
   components: {
     Item
   },
-  props: ['todos','selectTodo','deleteTodo']
+  props: ['todos']
 }
 </script>
 

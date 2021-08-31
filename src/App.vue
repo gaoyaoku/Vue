@@ -5,7 +5,7 @@
         <Title/>
 <!--        自定义事件调用-->
         <AddItem @addTodo="addTodo"/>
-        <ItemList :todos="todos" :selectTodo="selectTodo" :deleteTodo="deleteTodo"/>
+        <ItemList :todos="todos"/>
         <countItem :todos="todos" @selectAllTodo="selectAllTodo" @deleteAllTodo="deleteAllTodo"/>
       </div>
     </div>
@@ -72,6 +72,16 @@ export default {
         return !todo.done
       })
     }
+  },
+  mounted() {
+    // 绑定事件，接受参数，执行回调函数。
+    this.$bus.$on('selectTodo', this.selectTodo)
+    this.$bus.$on('deleteTodo', this.deleteTodo)
+  },
+  // 由于此组件被销毁时，$bus身上的时间还在，所以就帮助销毁一下。
+  beforeDestroy() {
+    this.$bus.off('selectTodo')
+    this.$bus.off('deleteTodo')
   }
 }
 </script>
