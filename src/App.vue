@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import pubsub from 'pubsub-js';
 import Title from "@/components/Title";
 import AddItem from "@/components/AddItem";
 import ItemList from "@/components/ItemList";
@@ -76,12 +77,14 @@ export default {
   mounted() {
     // 绑定事件，接受参数，执行回调函数。
     this.$bus.$on('selectTodo', this.selectTodo)
-    this.$bus.$on('deleteTodo', this.deleteTodo)
+    // 订阅消息，由于每发布一次，id更改，且依赖id
+    this.pubsubId = pubsub.subscribe('deleteTodo', this.deleteTodo)
   },
-  // 由于此组件被销毁时，$bus身上的时间还在，所以就帮助销毁一下。
   beforeDestroy() {
+    // 由于此组件被销毁时，$bus身上的时间还在，所以就帮助销毁一下。
     this.$bus.off('selectTodo')
-    this.$bus.off('deleteTodo')
+    // 传入id
+    pubsub.unsubscribe(this.pubsubId)
   }
 }
 </script>
