@@ -19,10 +19,10 @@ export default {
 }
 </script>
 
-<style scoped>
-#todo-Title {
-  text-align: center;
-  color: #41b883;
-}
+<style lang="stylus" scoped>
+
+#todo-Title
+  text-align center
+  margin 10px auto
 
 </style>

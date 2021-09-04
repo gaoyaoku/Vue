@@ -32,31 +32,34 @@ export default {
 }
 </script>
 
-<style scoped>
-.AddItem {
-  text-align: center;
-}
-.AddItem input {
-  /*否则默认样式导致不起作用*/
-  outline: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 60%;
-  height: 25px;
-  margin-right: 10px;
-}
-.AddItem button {
-  background-color: white;
-  border-radius: 2px;
-  height: 25px;
-  color: #41b883;
-  border: 1px solid #41b883;
-}
-.AddItem button:hover {
-  color: white;
-  background-color: #41b883;
-}
-.AddItem input:focus {
-  border: 1px solid #41b883;
-}
+<style lang="stylus" scoped>
+.AddItem
+  text-align center
+
+  input
+    /*否则默认样式导致不起作用*/
+    outline: none
+    border: 1px solid #ccc
+    border-radius: 4px
+    width: 60%
+    height: 25px
+    padding 0 5px
+    margin-right: 10px
+    color #41b883
+
+  button
+    background-color: white
+    border-radius: 2px
+    height: 25px
+    width 35px
+    color: #41b883
+    border: 1px solid #41b883
+
+  button:hover
+    color: white
+    background-color: #41b883
+
+  input:focus
+    border: 1px solid #41b883
+
 </style>

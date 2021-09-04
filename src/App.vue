@@ -1,7 +1,7 @@
 <template>
-  <div id="root">
+  <div id="app">
     <div class="todo-container">
-      <div class="todo-warp">
+      <div class="todo-wrapper">
         <Title/>
 <!--        自定义事件调用-->
         <AddItem @addTodo="addTodo"/>
@@ -102,31 +102,31 @@ export default {
 }
 </script>
 
-<style>
-#root {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /*text-align: center;*/
-  color: #2c3e50;
-}
-.todo-container {
-  width: 600px;
-  /*height: 600px;*/
-  height: fit-content;
-  margin: 60px auto 0;
-  border-radius: 4px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
-  padding: 25px;
- }
-.todo-warp {
-  border: 1px solid #ccc;
-  /*width: 550px;*/
-  /*height: 600px;*/
-  height: fit-content;
-  margin: 0 auto;
-  border-radius: 4px;
-}
+<style lang="stylus">
+@import 'assets/css/reset.css';
+@import 'assets/css/variables.styl'
 
+#app
+  font-family: Avenir, Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  color base-color
+
+  .todo-container
+    width base-width
+    margin 60px auto 0
+    border-radius 4px
+    box-shadow rgba(99, 99, 99, 0.2) 0 2px 8px 0
+    padding 25px
+
+    .todo-wrapper
+      border: 1px solid #ccc
+      border-radius 4px
+      margin: 0 auto
+
+// 不知道为什么不写#app不生效
+//@media screen and (max-width: 600px)
+//  #app .todo-container
+//    width mini-width
 </style>
 

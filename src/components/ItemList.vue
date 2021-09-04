@@ -19,22 +19,19 @@ export default {
 }
 </script>
 
-<style scoped>
-ul {
-  padding: 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 90%;
-  margin: 25px auto 0;
-}
+<style lang="stylus" scoped>
 
-.todo-enter-active{
-  animation: todo 0.5s linear;
-}
+ul
+  border 1px solid #ccc
+  border-radius 4px
+  width 90%
+  margin 25px auto 0
 
-.todo-leave-active{
-  animation: todo 0.5s linear reverse;
-}
+.todo-enter-active
+  animation todo 0.5s linear
+
+.todo-leave-active
+  animation todo 0.5s linear reverse
 
 @keyframes todo {
   from{
