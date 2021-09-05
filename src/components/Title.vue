@@ -5,7 +5,7 @@
         enter-active-class="animate__fadeInDown"
     >
         <div id="title">
-            <h1>待办</h1>
+            <h1>{{ Title }}</h1>
         </div>
     </transition>
 </template>
@@ -15,6 +15,7 @@ import 'animate.css';
 
 export default {
     name: "Title",
+    props: ['Title']
 }
 
 </script>
