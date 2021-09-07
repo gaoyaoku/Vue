@@ -3,7 +3,9 @@
         <div class="todo-container">
             <div class="todo-wrapper">
                 <Title title="我的"/>
-                我的
+                <div class="img">
+                    <img src="../assets/logo.png"/>
+                </div>
             </div>
         </div>
     </div>
@@ -28,5 +30,8 @@ export default {
 #me
     base-container()
     color base-color
+
+    .img
+        margin 0 auto
 
 </style>

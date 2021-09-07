@@ -1,13 +1,13 @@
 <template>
     <div class="navigation" >
         <div class="home">
-            <router-link to="/home">主页</router-link>
+            <router-link to="/home" class="nav">主页</router-link>
         </div>
         <div class="history">
-            <router-link to="/completed">已完成</router-link>
+            <router-link to="/completed" class="nav">已完成</router-link>
         </div>
         <div class="me">
-            <router-link to="/me">我的</router-link>
+            <router-link to="/me" class="nav">我的</router-link>
         </div>
     </div>
 </template>
@@ -25,10 +25,12 @@ export default {
 .navigation
     width 300px
     height 40px
-    background-color base-color
+    //background-color base-color
     color white
-    text-decoration none
-    //border 1px solid black
+    // 在此设置不生效？？？
+    //text-decoration none
+    border 2px solid base-color
+    //box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
     border-radius @height
     position fixed
     bottom 10px
@@ -41,5 +43,11 @@ export default {
     justify-content space-evenly
     align-items center
 
+    .nav
+        text-decoration none
+        color base-color
 
+.router-link-active
+    text-decoration none
+    color #0A7243FF
 </style>

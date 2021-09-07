@@ -3,7 +3,7 @@
         <div class="todo-container">
             <div class="todo-wrapper">
                 <Title title="已完成"/>
-                已完成
+                <ItemList :store="$store.state.todoCompletedStore" :archive="false"/>
             </div>
         </div>
     </div>
@@ -11,10 +11,13 @@
 
 <script>
 import Title from "@/components/Title";
+import ItemList from "@/components/ItemList";
+
 export default {
     name: "Completed",
     components: {
-        Title
+        Title,
+        ItemList
     }
 }
 </script>

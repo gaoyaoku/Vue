@@ -2,7 +2,7 @@
     <ul>
         <!--动画效果-->
         <transition-group name="todo" appear>
-            <Item v-for="todo in $store.state.todoStore" :key="todo.id" :todo="todo"/>
+            <Item v-for="todo in store" :key="todo.id" :todo="todo" :archive="archive"/>
         </transition-group>
     </ul>
 </template>
@@ -12,10 +12,10 @@ import Item from "@/components/Item";
 
 export default {
     name: "ItemList",
+    props: ['store', 'archive'],
     components: {
         Item
     },
-    // props: ['todos']
 }
 </script>
 
@@ -25,7 +25,7 @@ ul
     border 1px solid #ccc
     border-radius 4px
     width 90%
-    margin 25px auto 0
+    margin 25px auto
 
 .todo-enter-active
     animation todo 0.5s linear

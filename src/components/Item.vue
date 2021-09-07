@@ -15,7 +15,8 @@
             />
         </div>
         <div class='li-right'>
-            <button @click="editable(todo)">编辑</button>
+            <button @click="editTodo(todo)" v-if="!todo.done">编辑</button>
+            <button @click="archiveTodo(todo)" v-if="archive">归档</button>
             <button @click="deleteTodo(todo)">删除</button>
         </div>
     </li>
@@ -26,7 +27,7 @@
 
 export default {
     name: "Item",
-    props: ['todo'],
+    props: ['todo', 'archive'],
     data() {
         return {
             titleStyle: {
@@ -35,25 +36,18 @@ export default {
         }
     },
     methods: {
-        // 由于状态改变后无法直接修改传入todo.done 所以利用函数把状态改变的id传回App中的数据
-        // 利用全局事件总线，帮助触发$bus身上的事件，并传递参数
-        // getTodoIdForSelect() {
-        //     this.$bus.$emit('selectTodo', this.todo.id)
-        //     // 借助此函数设置选择完成后的删除线效果。直接"title-css": this.todo.done不生效！
-        //     this.titleStyle['title-style'] = !this.titleStyle['title-style']
-        // },
         changeTodoStatus(todo) {
             this.$store.commit('CHANGE_TODO_STATUS', todo.id)
             this.titleStyle['title-style'] = !this.titleStyle['title-style']
         },
-        // getTodoIdForDelete() {
-        //     pubsub.publish('deleteTodo', this.todo.id)
-        // },
         deleteTodo(todo) {
             this.$store.commit('DELETE_TODO', todo.id)
         },
+        archiveTodo(todo) {
+            this.$store.commit('ARCHIVE_TODO', todo)
+        },
         // 编辑
-        editable(todo) {
+        editTodo(todo) {
             // 使用todo.hasOwnProperty报错
             // 点击了编辑，再次点击无效
             if (!todo.editable) {
@@ -70,7 +64,6 @@ export default {
             if (!e.target.value.trim()) {
                 return alert('输入不能为空！')
             }
-            // this.$bus.$emit('editTodo', todo.id, e.target.value)
             // 由于不能传递两个参数，所以构造成一个对象。修改后会渲染。
             this.$store.commit('EDIT_TODO', {id:todo.id, title: e.target.value})
         }
